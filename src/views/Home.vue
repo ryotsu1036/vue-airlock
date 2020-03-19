@@ -1,18 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>This is an home page</h1>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "http://airlock.test:8000";
 
 export default {
-  name: "Home",
-  components: {
-    HelloWorld
+  mounted() {
+    axios.get("/api/user").then(response => {
+      console.log(response);
+    });
   }
 };
 </script>
